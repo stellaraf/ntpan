@@ -1,0 +1,52 @@
+<style>
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+    vertical-align: middle;
+}
+table, th, td {
+    border: 1px solid #ddd;
+}
+.time {
+  opacity: 0.6;
+}
+</style>
+
+<h3>Managed Palo Alto NTP Status Report</h3>
+<p class="time">{{ timestamp }}</p>
+
+<table>
+<tr>
+  <th>Device</th>
+  <th>In Sync</th>
+  <th>Server 1</th>
+  <th>Server 1 Status</th>
+  <th>Server 1 Reachable</th>
+  <th>Server 2</th>
+  <th>Server 2 Status</th>
+  <th>Server 2 Reachable</th>
+</tr>
+{% for d in states %} 
+  <tr>
+    <td> {{ d.device }}</td>
+  {% if d.synced  %}
+    <td> ✅</td>
+  {% else %}
+    <td> ❌</td>
+  {% endif %}
+  {% for s in d.servers %}
+    <td>{{ s.server }}</td>
+    <td>{{ s.status }}</td>
+    {% if s.reachable  %}
+      <td> ✅</td>
+    {% else %}
+      <td> ❌</td>
+    {% endif %}
+  {% endfor %}
+  </tr>
+{% endfor %} 
+</table>

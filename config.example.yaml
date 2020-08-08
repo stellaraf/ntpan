@@ -1,0 +1,16 @@
+device_username: username
+device_password: password
+device_subnets:
+  - 10.0.0.0/24
+  - 2001:db8:1::/64
+
+panorama:
+  url: https://panorama.domain.tld/api
+  api_key: key
+
+email:
+  recipients:
+    - Person One <person1@domain.tld>
+    - Person Two <person2@domain.tld>
+  smtp_host: smtp.domain.tld
+  sender: NGFW Reports <ntpan@domain.tld>
